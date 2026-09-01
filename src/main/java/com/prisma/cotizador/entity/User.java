@@ -1,4 +1,4 @@
-package com.prisma.cotizador.user;
+package com.prisma.cotizador.entity;
 
 public class User {
     private String name;
