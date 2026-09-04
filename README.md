@@ -18,7 +18,7 @@ gestion del modelo de negocio.
 ## Arquitectura del Proyecto
 - **Frontend**: [JavaScript, HTML5, CSS, Angular] -> Desarrollo en etapa posterior
 - **Backend**: Spring Boot, Java
-- **Base de datos**: MySQL
+- **Base de datos**: MySQL o PostGreSQL
 - **Gestion de JPA**: Hibernate
 - **Seguridad**: Spring Security con autenticación por sesiones
 - **Documentacion**: Swagger
