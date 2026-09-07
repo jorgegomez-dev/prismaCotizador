@@ -10,7 +10,7 @@ gestion del modelo de negocio.
 - Calculadora de Cotizacion de Corte Laser por CO2
 - Alta, Baja, Modificacion de Materiales
 - Registro de clientes y trabajos
-- Sistema de login y registro de usuarios de la empresa
+- Sistema de login y registro de empleados con Roles
 - Seguridad implementada con Spring Security
 - Acceso de datos para realizar analiticas.
 - Visualizacion de archivos con extension .dxf y analisis basicos para calculos de costos

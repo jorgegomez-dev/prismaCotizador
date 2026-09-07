@@ -8,18 +8,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.Instant;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User {
+public class Quotation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String surname;
-    private String username;
-    private String password;
-    private String role;
+    private Long idClient;
+    private Long idUser;
+
+    private BigDecimal totalPrice;
+    private Instant dateTimeQuote;  //Tracking the local date and time when the quote was made
+
+    private boolean isConfirmed;
+    private Instant dataTimeConfirmed; //Tracking the local date and time when the User save the confirmation of Client
+
 }
