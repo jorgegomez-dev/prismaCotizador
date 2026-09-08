@@ -24,7 +24,7 @@ public class Job {
     private Long idQuotation;
 
     private BigDecimal totalPrice;
-    private LocalDateTime deadLine; // Day and hour to finish the job '2026-08-07 15:30hs'
+    private LocalDateTime deadLine; // Day and hour to will finish the job '2026-08-07 15:30hs'
     private String pickUpOption; // Two options (owner business address and a pickup point)
     private String notes; // Additional information about the job
 
