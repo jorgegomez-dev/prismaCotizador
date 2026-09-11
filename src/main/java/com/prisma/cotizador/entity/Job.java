@@ -32,5 +32,7 @@ public class Job {
     private String pickUpStatus; // State can be 'in owner address, in pickup point'
     private String paymentStatus; // State can be 'unpaid, advance, paid'
     private String paymentMethod; // Can be 'cash, transfer, debit or credit card'
+    private boolean isAdvance; // If it is already advance, can be able to "in process status" in jobStatus
+    private boolean isPaid; // If it is already paid, can be able to complete pickUpStatus
 
 }
