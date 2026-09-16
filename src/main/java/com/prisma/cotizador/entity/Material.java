@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,13 +21,13 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_Material;
     private String name;
     private String type;
     private String supplier;
-    private Double widthMM;
-    private Double heightMM;
-    private Double thicknessMM;
+    private Integer widthMM;
+    private Integer heightMM;
+    private String thicknessMM;
     private BigDecimal pricePesos; // Final price with tax and cutting saw service included
 
     // Variable for calculation of cutting time machine
@@ -40,6 +41,7 @@ public class Material {
     private Integer stock30x30;
     private Integer stock100X50;
     private Integer stock50x50;
+
 
 //    @Override
 //    public final boolean equals(Object o) {
