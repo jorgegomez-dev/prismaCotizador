@@ -1,7 +1,15 @@
 package com.prisma.cotizador.controller;
 
-import org.springframework.stereotype.Controller;
+import com.prisma.cotizador.service.MaterialService;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MaterialController {
+
+    private final MaterialService materialService;
+
+    // Constructor Injection
+    public MaterialController(MaterialService materialService) {
+        this.materialService = materialService;
+    }
 }

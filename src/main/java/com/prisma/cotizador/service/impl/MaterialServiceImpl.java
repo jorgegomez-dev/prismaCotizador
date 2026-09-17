@@ -154,7 +154,6 @@ public class MaterialServiceImpl implements MaterialService {
                 updateMaterial.getStock30x30(),
                 updateMaterial.getStock100X50(),
                 updateMaterial.getStock50x50()
-
         );
     }
 
