@@ -1,7 +1,16 @@
 package com.prisma.cotizador.service;
 
-import org.springframework.stereotype.Service;
+import com.prisma.cotizador.dto.MaterialDTO;
+import java.util.List;
 
-@Service
 public interface MaterialService {
+    List<MaterialDTO> getAllMaterials();
+
+    MaterialDTO getMaterialById(Long id);
+
+    MaterialDTO createMaterial(MaterialDTO materialDTO);
+
+    MaterialDTO updateMaterial(Long id, MaterialDTO materialDTO);
+
+    void deleteMaterial(Long id);
 }

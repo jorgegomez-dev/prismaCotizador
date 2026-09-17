@@ -1,11 +1,15 @@
 package com.prisma.cotizador;
 
-import com.prisma.cotizador.entity.Material;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
 
-import java.math.BigDecimal;
+@OpenAPIDefinition(info = @Info(
+		title = "Prisma Cotizador",
+		version = "0.1",
+		description = "API Rest for quotation of laser cutting C02 machine"
+))
 
 @SpringBootApplication
 public class CotizadorApplication {
