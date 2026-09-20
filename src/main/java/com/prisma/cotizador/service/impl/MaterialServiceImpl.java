@@ -162,7 +162,6 @@ public class MaterialServiceImpl implements MaterialService {
             if(!materialRepository.existsById(id)){
                 throw new RuntimeException("Material not found");
             }
-
             materialRepository.deleteById(id);
     }
 }
