@@ -23,6 +23,11 @@ public class MaterialController {
         this.materialService = materialService;
     }
 
+    @GetMapping("api/connect")
+    public ResponseEntity<?> isConnect(){
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/listAll")
     public ResponseEntity<?> getAllMaterials(){
 
