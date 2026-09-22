@@ -36,7 +36,7 @@ public class Material {
     private Integer stock60x45;
     private Integer stock60x30;
     private Integer stock30x30;
-    private Integer stock100X50;
+    private Integer stock100x50;
     private Integer stock50x50;
 
     public Material() {
@@ -57,23 +57,19 @@ public class Material {
         this.stock60x45 = stock60x45;
         this.stock60x30 = stock60x30;
         this.stock30x30 = stock30x30;
-        this.stock100X50 = stock100X50;
+        this.stock100x50 = stock100X50;
         this.stock50x50 = stock50x50;
     }
 
     @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
         Material material = (Material) o;
-        return getId_Material() != null && Objects.equals(getId_Material(), material.getId_Material());
+        return Objects.equals(id_Material, material.id_Material) && Objects.equals(name, material.name) && Objects.equals(type, material.type) && Objects.equals(supplier, material.supplier) && Objects.equals(widthMM, material.widthMM) && Objects.equals(heightMM, material.heightMM) && Objects.equals(thicknessMM, material.thicknessMM) && Objects.equals(pricePesos, material.pricePesos) && Objects.equals(speedCuttingMMS, material.speedCuttingMMS) && Objects.equals(stock90x60, material.stock90x60) && Objects.equals(stock60x60, material.stock60x60) && Objects.equals(stock60x45, material.stock60x45) && Objects.equals(stock60x30, material.stock60x30) && Objects.equals(stock30x30, material.stock30x30) && Objects.equals(stock100x50, material.stock100x50) && Objects.equals(stock50x50, material.stock50x50);
     }
 
     @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    public int hashCode() {
+        return Objects.hash(id_Material, name, type, supplier, widthMM, heightMM, thicknessMM, pricePesos, speedCuttingMMS, stock90x60, stock60x60, stock60x45, stock60x30, stock30x30, stock100x50, stock50x50);
     }
 }

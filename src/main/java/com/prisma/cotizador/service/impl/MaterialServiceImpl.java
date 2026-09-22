@@ -39,7 +39,7 @@ public class MaterialServiceImpl implements MaterialService {
                         material.getStock60x45(),
                         material.getStock60x30(),
                         material.getStock30x30(),
-                        material.getStock100X50(),
+                        material.getStock100x50(),
                         material.getStock50x50()
                 ))
                 .toList();
@@ -65,7 +65,7 @@ public class MaterialServiceImpl implements MaterialService {
                 material.getStock60x45(),
                 material.getStock60x30(),
                 material.getStock30x30(),
-                material.getStock100X50(),
+                material.getStock100x50(),
                 material.getStock50x50()
         );
     }
@@ -88,7 +88,7 @@ public class MaterialServiceImpl implements MaterialService {
                 materialDTO.stock60x45(),
                 materialDTO.stock60x30(),
                 materialDTO.stock30x30(),
-                materialDTO.stock100X50(),
+                materialDTO.stock100x50(),
                 materialDTO.stock50x50()
         );
 
@@ -109,7 +109,7 @@ public class MaterialServiceImpl implements MaterialService {
                 savedMaterial.getStock60x45(),
                 savedMaterial.getStock60x30(),
                 savedMaterial.getStock30x30(),
-                savedMaterial.getStock100X50(),
+                savedMaterial.getStock100x50(),
                 savedMaterial.getStock50x50()
         );
     }
@@ -132,7 +132,7 @@ public class MaterialServiceImpl implements MaterialService {
         material.setStock60x45(materialDTO.stock60x45());
         material.setStock60x30(materialDTO.stock60x30());
         material.setStock30x30(materialDTO.stock30x30());
-        material.setStock100X50(materialDTO.stock100X50());
+        material.setStock100x50(materialDTO.stock100x50());
         material.setStock50x50(materialDTO.stock50x50());
 
         Material updateMaterial = materialRepository.save(material);
@@ -152,7 +152,7 @@ public class MaterialServiceImpl implements MaterialService {
                 updateMaterial.getStock60x45(),
                 updateMaterial.getStock60x30(),
                 updateMaterial.getStock30x30(),
-                updateMaterial.getStock100X50(),
+                updateMaterial.getStock100x50(),
                 updateMaterial.getStock50x50()
         );
     }

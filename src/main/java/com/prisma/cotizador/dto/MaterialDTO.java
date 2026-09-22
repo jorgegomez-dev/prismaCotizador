@@ -21,7 +21,7 @@ public record MaterialDTO(
         Integer stock60x45,
         Integer stock60x30,
         Integer stock30x30,
-        Integer stock100X50,
+        Integer stock100x50,
         Integer stock50x50
 ) {
 
