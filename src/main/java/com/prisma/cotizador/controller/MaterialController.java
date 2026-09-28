@@ -1,6 +1,7 @@
 package com.prisma.cotizador.controller;
 
 import com.prisma.cotizador.dto.MaterialDTO;
+import com.prisma.cotizador.payload.ApiResponse;
 import com.prisma.cotizador.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,28 +21,49 @@ public class MaterialController {
         this.materialService = materialService;
     }
 
+//    @GetMapping()
+//    public ResponseEntity<?> isConnect(){
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
     @GetMapping()
-    public ResponseEntity<?> isConnect(){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
+        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
+        return ResponseEntity.ok(response);
     }
+
+//    @GetMapping("/listAll")
+//    public ResponseEntity<List<MaterialDTO>> getAllMaterials(){
+//        try {
+//            return new ResponseEntity<>(materialService.getAllMaterials(), HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @GetMapping("/listAll")
-    public ResponseEntity<?> getAllMaterials(){
-        try {
-            return new ResponseEntity<>(materialService.getAllMaterials(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<ApiResponse<List<MaterialDTO>>> getAllMaterials(){
+
+            List<MaterialDTO> materials = materialService.getAllMaterials();
+            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched succefull", materials);
+            return ResponseEntity.ok(response);
     }
 
+//    @GetMapping("/getMaterialById/{id}")
+//    public ResponseEntity<?> getMaterialById(@PathVariable Long id){
+//        try {
+//            return new ResponseEntity<>(materialService.getMaterialById(id), HttpStatus.OK);
+//        } catch (Exception e){
+//            //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Material Not Found");
+//        }
+//    }
+
     @GetMapping("/getMaterialById/{id}")
-    public ResponseEntity<?> getMaterialById(@PathVariable Long id){
-        try {
-            return new ResponseEntity<>(materialService.getMaterialById(id), HttpStatus.OK);
-        } catch (Exception e){
-            //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Material Not Found");
-        }
+    public ResponseEntity<ApiResponse<MaterialDTO>> getMaterialById(@PathVariable Long id){
+        MaterialDTO material = materialService.getMaterialById(id);
+        ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material found", material);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/createMaterial")
@@ -53,6 +75,5 @@ public class MaterialController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Material was not created");
         }
     }
-
 
 }
