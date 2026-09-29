@@ -66,14 +66,21 @@ public class MaterialController {
         return ResponseEntity.ok(response);
     }
 
+//    @PostMapping("/createMaterial")
+//    public ResponseEntity<?> createMaterial(@RequestBody MaterialDTO materialDTO){
+//        try {
+//            materialService.createMaterial(materialDTO);
+//            return ResponseEntity.status(HttpStatus.CREATED).body("Material created");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Material was not created");
+//        }
+//    }
+
     @PostMapping("/createMaterial")
-    public ResponseEntity<?> createMaterial(@RequestBody MaterialDTO materialDTO){
-        try {
-            materialService.createMaterial(materialDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Material created");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Material was not created");
-        }
+    public ResponseEntity<ApiResponse<MaterialDTO>> createMaterial(@RequestBody MaterialDTO material){
+        materialService.createMaterial(material);
+        ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material created", material);
+        return ResponseEntity.ok(response);
     }
 
 }

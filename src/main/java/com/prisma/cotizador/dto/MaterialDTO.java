@@ -3,7 +3,7 @@ package com.prisma.cotizador.dto;
 import java.math.BigDecimal;
 
 public record MaterialDTO(
-        Long id_Material,
+        Long id,
         String name,
         String type,
         String supplier,
