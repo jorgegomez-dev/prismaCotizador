@@ -25,7 +25,7 @@ public class MaterialServiceImpl implements MaterialService {
 
         return materials.stream()
                 .map(material -> new MaterialDTO(
-                        material.getId_Material(),
+                        material.getId(),
                         material.getName(),
                         material.getType(),
                         material.getSupplier(),
@@ -51,7 +51,7 @@ public class MaterialServiceImpl implements MaterialService {
                 .orElseThrow(()-> new RuntimeException("Material not found"));
 
         return new MaterialDTO(
-                material.getId_Material(),
+                material.getId(),
                 material.getName(),
                 material.getType(),
                 material.getSupplier(),
@@ -74,7 +74,7 @@ public class MaterialServiceImpl implements MaterialService {
     public MaterialDTO createMaterial(MaterialDTO materialDTO) {
 
         Material material = new Material(
-                materialDTO.id_Material(),
+                materialDTO.id(),
                 materialDTO.name(),
                 materialDTO.type(),
                 materialDTO.supplier(),
@@ -95,7 +95,7 @@ public class MaterialServiceImpl implements MaterialService {
         Material savedMaterial = materialRepository.save(material);
 
         return new MaterialDTO(
-                savedMaterial.getId_Material(),
+                savedMaterial.getId(),
                 savedMaterial.getName(),
                 savedMaterial.getType(),
                 savedMaterial.getSupplier(),
@@ -138,7 +138,7 @@ public class MaterialServiceImpl implements MaterialService {
         Material updateMaterial = materialRepository.save(material);
 
         return new MaterialDTO(
-                updateMaterial.getId_Material(),
+                updateMaterial.getId(),
                 updateMaterial.getName(),
                 updateMaterial.getType(),
                 updateMaterial.getSupplier(),
