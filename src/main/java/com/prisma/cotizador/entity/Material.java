@@ -42,7 +42,7 @@ public class Material {
     public Material() {
     }
 
-    public Material(Long id_Material, String name, String type, String supplier, Integer widthMM, Integer heightMM, String thicknessMM, BigDecimal pricePesos, Double speedCuttingMMS, Integer stock90x60, Integer stock60x60, Integer stock60x45, Integer stock60x30, Integer stock30x30, Integer stock100X50, Integer stock50x50) {
+    public Material(Long id_Material, String name, String type, String supplier, Integer widthMM, Integer heightMM, String thicknessMM, BigDecimal pricePesos, Double speedCuttingMMS, Integer stock90x60, Integer stock60x60, Integer stock60x45, Integer stock60x30, Integer stock30x30, Integer stock100x50, Integer stock50x50) {
         this.id_Material = id_Material;
         this.name = name;
         this.type = type;
@@ -57,7 +57,7 @@ public class Material {
         this.stock60x45 = stock60x45;
         this.stock60x30 = stock60x30;
         this.stock30x30 = stock30x30;
-        this.stock100x50 = stock100X50;
+        this.stock100x50 = stock100x50;
         this.stock50x50 = stock50x50;
     }
 
