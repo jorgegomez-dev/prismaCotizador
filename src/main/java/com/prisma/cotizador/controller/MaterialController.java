@@ -22,42 +22,18 @@ public class MaterialController {
     }
 
 //    @GetMapping()
-//    public ResponseEntity<?> isConnect(){
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
-    @GetMapping()
-    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
-        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
-        return ResponseEntity.ok(response);
-    }
-
-//    @GetMapping("/listAll")
-//    public ResponseEntity<List<MaterialDTO>> getAllMaterials(){
-//        try {
-//            return new ResponseEntity<>(materialService.getAllMaterials(), HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+//    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
+//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
+//        return ResponseEntity.ok(response);
 //    }
 
     @GetMapping("/listAll")
     public ResponseEntity<ApiResponse<List<MaterialDTO>>> getAllMaterials(){
 
             List<MaterialDTO> materials = materialService.getAllMaterials();
-            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched succefull", materials);
+            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched succeful", materials);
             return ResponseEntity.ok(response);
     }
-
-//    @GetMapping("/getMaterialById/{id}")
-//    public ResponseEntity<?> getMaterialById(@PathVariable Long id){
-//        try {
-//            return new ResponseEntity<>(materialService.getMaterialById(id), HttpStatus.OK);
-//        } catch (Exception e){
-//            //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Material Not Found");
-//        }
-//    }
 
     @GetMapping("/getMaterialById/{id}")
     public ResponseEntity<ApiResponse<MaterialDTO>> getMaterialById(@PathVariable Long id){
@@ -66,16 +42,6 @@ public class MaterialController {
         return ResponseEntity.ok(response);
     }
 
-//    @PostMapping("/createMaterial")
-//    public ResponseEntity<?> createMaterial(@RequestBody MaterialDTO materialDTO){
-//        try {
-//            materialService.createMaterial(materialDTO);
-//            return ResponseEntity.status(HttpStatus.CREATED).body("Material created");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Material was not created");
-//        }
-//    }
-
     @PostMapping("/createMaterial")
     public ResponseEntity<ApiResponse<MaterialDTO>> createMaterial(@RequestBody MaterialDTO material){
         materialService.createMaterial(material);
@@ -83,4 +49,17 @@ public class MaterialController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/updateMaterial/{id}")
+    public ResponseEntity<ApiResponse<MaterialDTO>> updateMaterial(@PathVariable Long id,  @RequestBody MaterialDTO material){
+        materialService.updateMaterial(id, material);
+        ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material updated!", material);
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/deleteMaterial/{id}")
+    public ResponseEntity<ApiResponse<HttpStatus>> deleteMaterial(@PathVariable Long id){
+        materialService.deleteMaterial(id);
+        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Material deleted.", HttpStatus.OK);
+        return ResponseEntity.ok(response);
+    }
 }

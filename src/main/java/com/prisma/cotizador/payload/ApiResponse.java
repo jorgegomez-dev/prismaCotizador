@@ -17,9 +17,6 @@ public class ApiResponse <T>{
     private T data; //Here we will save DTOs, DTOs List, null or void data
     private LocalDateTime timeStamp = LocalDateTime.now();
 
-    public ApiResponse() {
-    }
-
     public ApiResponse(boolean success, String message, T data) {
         this.success = success;
         this.message = message;

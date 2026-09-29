@@ -47,7 +47,7 @@ gestion del modelo de negocio.
 
 7. La aplicacion tiene habilitado el manejo de sesiones simultaneas por lo que se puede probar con varios usuarios y sesiones a la vez
 8. Toda la documentacion de los endpoints y el manejo de los mismos esta visible para sesion inciada en:
-    - http://localhost:8080/doc/swagger-ui/index.html#/
+    - http://localhost:8080/swagger-ui/index.html
 9. Si las acciones se interrumpen inesperadamente, no olvidar cambiar la duracion de las sesiones para que no interfieran en la etapa de testing
 
 ### . **Uso de la Aplicación**
