@@ -23,7 +23,7 @@ public class MaterialController {
 
 //    @GetMapping()
 //    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
-//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
+//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Successful!", HttpStatus.OK);
 //        return ResponseEntity.ok(response);
 //    }
 
@@ -31,7 +31,7 @@ public class MaterialController {
     public ResponseEntity<ApiResponse<List<MaterialDTO>>> getAllMaterials(){
 
             List<MaterialDTO> materials = materialService.getAllMaterials();
-            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched succeful", materials);
+            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched successful", materials);
             return ResponseEntity.ok(response);
     }
 
@@ -46,7 +46,9 @@ public class MaterialController {
     public ResponseEntity<ApiResponse<MaterialDTO>> createMaterial(@RequestBody MaterialDTO material){
         materialService.createMaterial(material);
         ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material created", material);
-        return ResponseEntity.ok(response);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
     }
 
     @PutMapping("/updateMaterial/{id}")
