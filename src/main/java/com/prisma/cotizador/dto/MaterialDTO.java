@@ -1,8 +1,5 @@
 package com.prisma.cotizador.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 
 public record MaterialDTO(

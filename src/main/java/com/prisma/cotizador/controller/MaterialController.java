@@ -3,7 +3,6 @@ package com.prisma.cotizador.controller;
 import com.prisma.cotizador.dto.MaterialDTO;
 import com.prisma.cotizador.payload.ApiResponse;
 import com.prisma.cotizador.service.MaterialService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +22,16 @@ public class MaterialController {
 
 //    @GetMapping()
 //    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
-//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Successful!", HttpStatus.OK);
+//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
 //        return ResponseEntity.ok(response);
 //    }
 
     @GetMapping("/listAll")
     public ResponseEntity<ApiResponse<List<MaterialDTO>>> getAllMaterials(){
 
-            List<MaterialDTO> materials = materialService.getAllMaterials();
-            ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched successful", materials);
-            return ResponseEntity.ok(response);
+        List<MaterialDTO> materials = materialService.getAllMaterials();
+        ApiResponse<List<MaterialDTO>> response = new ApiResponse<>(true, "Materials fetched succeful", materials);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getMaterialById/{id}")
@@ -40,15 +39,14 @@ public class MaterialController {
         MaterialDTO material = materialService.getMaterialById(id);
         ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material found", material);
         return ResponseEntity.ok(response);
+
     }
 
     @PostMapping("/createMaterial")
     public ResponseEntity<ApiResponse<MaterialDTO>> createMaterial(@RequestBody MaterialDTO material){
         materialService.createMaterial(material);
         ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material created", material);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/updateMaterial/{id}")

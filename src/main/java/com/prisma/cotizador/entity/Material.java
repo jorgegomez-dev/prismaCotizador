@@ -1,8 +1,6 @@
 package com.prisma.cotizador.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,25 +18,12 @@ public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotEmpty
     private String name;
-
-    @NotEmpty
     private String type;
-
-    @NotEmpty
     private String supplier;
-
-    @NotEmpty
     private Integer widthMM;
-
-    @NotEmpty
     private Integer heightMM;
-
-    @NotEmpty
     private String thicknessMM;
-
     private BigDecimal pricePesos; // Final price with tax and cutting saw service included
 
     // Variable for calculation of cutting time machine

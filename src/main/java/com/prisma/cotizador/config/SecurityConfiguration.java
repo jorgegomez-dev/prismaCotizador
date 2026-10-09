@@ -20,7 +20,7 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults()); // For use with postman in basic auth username + password
-                //.formLogin(Customizer.withDefaults()); // For use a Login Box in the browser testing html access
+        //.formLogin(Customizer.withDefaults()); // For use a Login Box in the browser testing html access
 
         return http.build();
     }

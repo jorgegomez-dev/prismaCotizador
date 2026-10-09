@@ -2,6 +2,7 @@ package com.prisma.cotizador.service.impl;
 
 import com.prisma.cotizador.dto.MaterialDTO;
 import com.prisma.cotizador.entity.Material;
+import com.prisma.cotizador.exception.MaterialNotFoundException;
 import com.prisma.cotizador.repository.MaterialRepository;
 import com.prisma.cotizador.service.MaterialService;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public MaterialDTO getMaterialById(Long id) {
         Material material = materialRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Material not found"));
+                .orElseThrow(()-> new MaterialNotFoundException(id));
 
         return new MaterialDTO(
                 material.getId(),
@@ -159,9 +160,9 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public void deleteMaterial(Long id) {
-            if(!materialRepository.existsById(id)){
-                throw new RuntimeException("Material not found");
-            }
-            materialRepository.deleteById(id);
+        if(!materialRepository.existsById(id)){
+            throw new RuntimeException("Material not found");
+        }
+        materialRepository.deleteById(id);
     }
 }
