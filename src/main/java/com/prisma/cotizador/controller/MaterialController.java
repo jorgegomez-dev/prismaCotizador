@@ -46,7 +46,7 @@ public class MaterialController {
     public ResponseEntity<ApiResponse<MaterialDTO>> createMaterial(@RequestBody MaterialDTO material){
         materialService.createMaterial(material);
         ApiResponse<MaterialDTO> response = new ApiResponse<>(true, "Material created", material);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/updateMaterial/{id}")

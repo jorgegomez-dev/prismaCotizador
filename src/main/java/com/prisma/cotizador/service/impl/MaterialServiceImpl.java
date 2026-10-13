@@ -118,7 +118,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public MaterialDTO updateMaterial(Long id, MaterialDTO materialDTO) {
         Material material = materialRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Material not found"));
+                .orElseThrow(()-> new MaterialNotFoundException(id));
 
         material.setName(materialDTO.name());
         material.setType(materialDTO.type());
@@ -161,7 +161,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public void deleteMaterial(Long id) {
         if(!materialRepository.existsById(id)){
-            throw new RuntimeException("Material not found");
+            throw new MaterialNotFoundException(id);
         }
         materialRepository.deleteById(id);
     }
