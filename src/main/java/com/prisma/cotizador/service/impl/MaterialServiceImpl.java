@@ -2,6 +2,7 @@ package com.prisma.cotizador.service.impl;
 
 import com.prisma.cotizador.dto.MaterialDTO;
 import com.prisma.cotizador.entity.Material;
+import com.prisma.cotizador.exception.MaterialAlreadyExistException;
 import com.prisma.cotizador.exception.MaterialNotFoundException;
 import com.prisma.cotizador.repository.MaterialRepository;
 import com.prisma.cotizador.service.MaterialService;
@@ -92,6 +93,19 @@ public class MaterialServiceImpl implements MaterialService {
                 materialDTO.stock100x50(),
                 materialDTO.stock50x50()
         );
+
+        // Block verify if exist another material in database with the same Name, Type,  Supplier & Thickness
+        boolean alreadyExists =
+                materialRepository.existsByNameAndTypeAndSupplierAndThicknessMM(
+                        materialDTO.name(),
+                        materialDTO.type(),
+                        materialDTO.supplier(),
+                        materialDTO.thicknessMM()
+                );
+
+        if (alreadyExists) {
+            throw new MaterialAlreadyExistException(materialDTO.name(), materialDTO.type(), materialDTO.supplier(), materialDTO.thicknessMM());
+        }
 
         Material savedMaterial = materialRepository.save(material);
 

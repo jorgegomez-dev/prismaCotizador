@@ -20,12 +20,6 @@ public class MaterialController {
         this.materialService = materialService;
     }
 
-//    @GetMapping()
-//    public ResponseEntity<ApiResponse<HttpStatus>> isConnect(){
-//        ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Connection Succesful!", HttpStatus.OK);
-//        return ResponseEntity.ok(response);
-//    }
-
     @GetMapping("/listAll")
     public ResponseEntity<ApiResponse<List<MaterialDTO>>> getAllMaterials(){
 

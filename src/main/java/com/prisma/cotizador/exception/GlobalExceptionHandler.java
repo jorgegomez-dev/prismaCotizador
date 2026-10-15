@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //
+    // Handler for 404 NOT FOUND
     @ExceptionHandler(MaterialNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleMaterialNotFound(MaterialNotFoundException ex){
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
@@ -18,4 +18,17 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
+
+    // Handler for 409 CONFLICT
+    @ExceptionHandler(MaterialAlreadyExistException.class)
+    public ResponseEntity<ApiResponse<Void>> handleMaterialAlreadyExistException(MaterialAlreadyExistException ex){
+        ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
+    }
+
+
+
 }
