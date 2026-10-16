@@ -1,6 +1,10 @@
 package com.prisma.cotizador.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,24 +22,63 @@ public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "The name is required")
     private String name;
+
+    @NotBlank(message = "The type is required")
     private String type;
+
+    @NotBlank(message = "The supplier is required")
     private String supplier;
+
+    @NotNull(message = "The width is required")
+    @Positive(message = "The width must be greater than zero")
     private Integer widthMM;
+
+    @NotNull(message = "The height is required")
+    @Positive(message = "The height must be greater than zero")
     private Integer heightMM;
+
+    @NotBlank(message = "The thickness is required")
     private String thicknessMM;
+
+    @NotNull(message = "The price is required")
+    @Positive(message = "The price must be greater than zero")
     private BigDecimal pricePesos; // Final price with tax and cutting saw service included
 
     // Variable for calculation of cutting time machine
+    @NotNull(message = "The speed cutting is required")
+    @Positive(message = "The speed cutting must be greater than zero")
     private Double speedCuttingMMS; // Speed cutting in millimeters per seconds
 
     // Stock dimensions of sheets
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock90x60;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock60x60;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock60x45;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock60x30;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock30x30;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock100x50;
+
+    @NotNull(message = "The quantity is required")
+    @PositiveOrZero(message = "The quantity must be zero or greater than zero")
     private Integer stock50x50;
 
     public Material() {

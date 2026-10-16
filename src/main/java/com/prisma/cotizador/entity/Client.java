@@ -1,6 +1,9 @@
 package com.prisma.cotizador.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,10 +20,18 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @NotBlank(message = "Surname is required")
     private String surname;
+
     private String company;
+
+    @NotBlank(message = "Email is required")
     private String email;
+
     private String phone;
 
     public Client() {
