@@ -57,5 +57,4 @@ public class ClientController {
         ApiResponse<HttpStatus> response = new ApiResponse<>(true, "Client deleted.", HttpStatus.OK);
         return ResponseEntity.ok(response);
     }
-    
 }
