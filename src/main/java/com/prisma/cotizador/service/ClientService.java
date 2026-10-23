@@ -1,7 +1,6 @@
 package com.prisma.cotizador.service;
 
 import com.prisma.cotizador.dto.ClientDTO;
-import com.prisma.cotizador.entity.Client;
 
 import java.util.List;
 
