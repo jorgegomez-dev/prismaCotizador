@@ -4,6 +4,7 @@ import com.prisma.cotizador.dto.ClientDTO;
 import com.prisma.cotizador.entity.Client;
 import com.prisma.cotizador.exception.ClientAlreadyExistException;
 import com.prisma.cotizador.exception.ClientNotFoundException;
+import com.prisma.cotizador.mapper.ClientMapper;
 import com.prisma.cotizador.repository.ClientRepository;
 import com.prisma.cotizador.service.ClientService;
 import org.springframework.stereotype.Service;
@@ -41,28 +42,14 @@ public class ClientServiceImpl implements ClientService {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundException(id));
 
-        return new ClientDTO(
-                client.getId(),
-                client.getName(),
-                client.getSurname(),
-                client.getCompany(),
-                client.getEmail(),
-                client.getPhone()
-        );
+        return ClientMapper.toDTO(client);
     }
 
     @Override
     public ClientDTO createClient(ClientDTO clientDTO) {
-        Client client = new Client(
-                clientDTO.id(),
-                clientDTO.name(),
-                clientDTO.surname(),
-                clientDTO.company(),
-                clientDTO.email(),
-                clientDTO.phone()
-        );
+        Client client = ClientMapper.toEntity(clientDTO);
 
-        // Block verify if exist another client in database with the same Name, Type,  Supplier & Thickness
+        // Block verify if exist another client in database with the same Name, Surname and Email
         boolean alreadyExist =
                 clientRepository.existsByNameAndSurnameAndEmail(
                         client.getName(),
@@ -76,14 +63,7 @@ public class ClientServiceImpl implements ClientService {
 
         Client savedClient = clientRepository.save(client);
 
-        return new ClientDTO(
-                savedClient.getId(),
-                savedClient.getName(),
-                savedClient.getSurname(),
-                savedClient.getCompany(),
-                savedClient.getEmail(),
-                savedClient.getPhone()
-        );
+        return ClientMapper.toDTO(savedClient);
     }
 
     @Override
@@ -99,14 +79,7 @@ public class ClientServiceImpl implements ClientService {
 
         Client updatedClient = clientRepository.save(client);
 
-        return new ClientDTO(
-                updatedClient.getId(),
-                updatedClient.getName(),
-                updatedClient.getSurname(),
-                updatedClient.getCompany(),
-                updatedClient.getEmail(),
-                updatedClient.getPhone()
-        );
+        return ClientMapper.toDTO(updatedClient);
     }
 
     @Override

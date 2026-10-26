@@ -4,6 +4,7 @@ import com.prisma.cotizador.dto.MaterialDTO;
 import com.prisma.cotizador.entity.Material;
 import com.prisma.cotizador.exception.MaterialAlreadyExistException;
 import com.prisma.cotizador.exception.MaterialNotFoundException;
+import com.prisma.cotizador.mapper.MaterialMapper;
 import com.prisma.cotizador.repository.MaterialRepository;
 import com.prisma.cotizador.service.MaterialService;
 import org.springframework.stereotype.Service;
@@ -52,47 +53,13 @@ public class MaterialServiceImpl implements MaterialService {
         Material material = materialRepository.findById(id)
                 .orElseThrow(()-> new MaterialNotFoundException(id));
 
-        return new MaterialDTO(
-                material.getId(),
-                material.getName(),
-                material.getType(),
-                material.getSupplier(),
-                material.getWidthMM(),
-                material.getHeightMM(),
-                material.getThicknessMM(),
-                material.getPricePesos(),
-                material.getSpeedCuttingMMS(),
-                material.getStock90x60(),
-                material.getStock60x60(),
-                material.getStock60x45(),
-                material.getStock60x30(),
-                material.getStock30x30(),
-                material.getStock100x50(),
-                material.getStock50x50()
-        );
+        return MaterialMapper.toDTO(material);
     }
 
     @Override
     public MaterialDTO createMaterial(MaterialDTO materialDTO) {
 
-        Material material = new Material(
-                materialDTO.id(),
-                materialDTO.name(),
-                materialDTO.type(),
-                materialDTO.supplier(),
-                materialDTO.widthMM(),
-                materialDTO.heightMM(),
-                materialDTO.thicknessMM(),
-                materialDTO.pricePesos(),
-                materialDTO.speedCuttingMMS(),
-                materialDTO.stock90x60(),
-                materialDTO.stock60x60(),
-                materialDTO.stock60x45(),
-                materialDTO.stock60x30(),
-                materialDTO.stock30x30(),
-                materialDTO.stock100x50(),
-                materialDTO.stock50x50()
-        );
+        Material material = MaterialMapper.toEntity(materialDTO);
 
         // Block verify if exist another material in database with the same Name, Type,  Supplier & Thickness
         boolean alreadyExists =
@@ -109,24 +76,7 @@ public class MaterialServiceImpl implements MaterialService {
 
         Material savedMaterial = materialRepository.save(material);
 
-        return new MaterialDTO(
-                savedMaterial.getId(),
-                savedMaterial.getName(),
-                savedMaterial.getType(),
-                savedMaterial.getSupplier(),
-                savedMaterial.getWidthMM(),
-                savedMaterial.getHeightMM(),
-                savedMaterial.getThicknessMM(),
-                savedMaterial.getPricePesos(),
-                savedMaterial.getSpeedCuttingMMS(),
-                savedMaterial.getStock90x60(),
-                savedMaterial.getStock60x60(),
-                savedMaterial.getStock60x45(),
-                savedMaterial.getStock60x30(),
-                savedMaterial.getStock30x30(),
-                savedMaterial.getStock100x50(),
-                savedMaterial.getStock50x50()
-        );
+        return MaterialMapper.toDTO(savedMaterial);
     }
 
     @Override
@@ -152,24 +102,7 @@ public class MaterialServiceImpl implements MaterialService {
 
         Material updateMaterial = materialRepository.save(material);
 
-        return new MaterialDTO(
-                updateMaterial.getId(),
-                updateMaterial.getName(),
-                updateMaterial.getType(),
-                updateMaterial.getSupplier(),
-                updateMaterial.getWidthMM(),
-                updateMaterial.getHeightMM(),
-                updateMaterial.getThicknessMM(),
-                updateMaterial.getPricePesos(),
-                updateMaterial.getSpeedCuttingMMS(),
-                updateMaterial.getStock90x60(),
-                updateMaterial.getStock60x60(),
-                updateMaterial.getStock60x45(),
-                updateMaterial.getStock60x30(),
-                updateMaterial.getStock30x30(),
-                updateMaterial.getStock100x50(),
-                updateMaterial.getStock50x50()
-        );
+        return MaterialMapper.toDTO(updateMaterial);
     }
 
     @Override
