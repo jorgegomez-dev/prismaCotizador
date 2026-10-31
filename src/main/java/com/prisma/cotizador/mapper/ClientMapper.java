@@ -5,7 +5,7 @@ import com.prisma.cotizador.entity.Client;
 
 public class ClientMapper {
 
-    // private to prevent instantation
+    // private to prevent instantiation
     private ClientMapper() {
     }
 

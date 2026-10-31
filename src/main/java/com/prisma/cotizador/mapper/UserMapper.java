@@ -5,7 +5,7 @@ import com.prisma.cotizador.entity.User;
 
 public class UserMapper {
 
-    // private to prevent instantation
+    // private to prevent instantiation
     private UserMapper() {
     }
 

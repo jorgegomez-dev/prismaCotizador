@@ -5,7 +5,7 @@ import com.prisma.cotizador.entity.Material;
 
 public class MaterialMapper {
 
-    // private to prevent instantation
+    // private to prevent instantiation
     private MaterialMapper() {
     }
 

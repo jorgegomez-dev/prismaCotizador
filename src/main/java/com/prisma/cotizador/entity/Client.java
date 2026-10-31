@@ -1,6 +1,7 @@
 package com.prisma.cotizador.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class Client {
 
     private String company;
 
+    @Email(message = "Must be a valid email address")
     @NotBlank(message = "Email is required")
     private String email;
 
