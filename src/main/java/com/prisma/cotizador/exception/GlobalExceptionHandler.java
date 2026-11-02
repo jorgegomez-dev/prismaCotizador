@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     // *** HANDLERS FOR MATERIALS ***
     // Handler 404 NOT FOUND for Material
     @ExceptionHandler(MaterialNotFoundException.class)
-    public ResponseEntity<ApiResponse<Void>> handleMaterialNotFound(MaterialNotFoundException ex){
+    public ResponseEntity<ApiResponse<Void>> handleMaterialNotFound(MaterialNotFoundException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
         return ResponseEntity
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 
     // Handler 409 CONFLICT for Material
     @ExceptionHandler(MaterialAlreadyExistException.class)
-    public ResponseEntity<ApiResponse<Void>> handleMaterialAlreadyExistException(MaterialAlreadyExistException ex){
+    public ResponseEntity<ApiResponse<Void>> handleMaterialAlreadyExistException(MaterialAlreadyExistException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
         return ResponseEntity
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
 
     // Handler 404 NOT FOUND for Client
     @ExceptionHandler(ClientNotFoundException.class)
-    public ResponseEntity<ApiResponse<Void>> handleClientNotFoundException(ClientNotFoundException ex){
+    public ResponseEntity<ApiResponse<Void>> handleClientNotFoundException(ClientNotFoundException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
         return ResponseEntity
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
 
     // Handler 409 CONFLICT for Client
     @ExceptionHandler(ClientAlreadyExistException.class)
-    public ResponseEntity<ApiResponse<Void>> handlerClientAlreadyExistException(ClientAlreadyExistException ex){
+    public ResponseEntity<ApiResponse<Void>> handlerClientAlreadyExistException(ClientAlreadyExistException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
         return ResponseEntity
@@ -63,17 +63,17 @@ public class GlobalExceptionHandler {
 
     // Handler 404 NOT FOUND for Client
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ApiResponse<Void>> handleUserNotFoundException(UserNotFoundException ex){
+    public ResponseEntity<ApiResponse<Void>> handleUserNotFoundException(UserNotFoundException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
-        return  ResponseEntity
+        return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
 
     // Handler 409 CONFLICT for User
     @ExceptionHandler(UserAlreadyExistException.class)
-    public ResponseEntity<ApiResponse<Void>> handleUserAlreadyExistException(UserAlreadyExistException ex){
+    public ResponseEntity<ApiResponse<Void>> handleUserAlreadyExistException(UserAlreadyExistException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
 
         return ResponseEntity
@@ -81,26 +81,25 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
+        // *** HANDLERS FOR ALL ***
+        // Handle 400 BAD REQUEST for incomplete data to create or update Entities
+        @ExceptionHandler(ConstraintViolationException.class)
+        public ResponseEntity<Map<String, String>> handleConstraintViolation (
+                ConstraintViolationException ex){
 
-    // *** HANDLERS FOR ALL ***
-    // Handle 400 BAD REQUEST for incomplete data to create or update Entities
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<Map<String, String>> handleConstraintViolation(
-            ConstraintViolationException ex) {
+            Map<String, String> errors = new HashMap<>();
 
-        Map<String, String> errors = new HashMap<>();
+            for (ConstraintViolation<?> violation :
+                    ex.getConstraintViolations()) {
 
-        for (ConstraintViolation<?> violation :
-                ex.getConstraintViolations()) {
+                String field = violation.getPropertyPath().toString();
+                String message = violation.getMessage();
 
-            String field = violation.getPropertyPath().toString();
-            String message = violation.getMessage();
+                errors.put(field, message);
+            }
 
-            errors.put(field, message);
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errors);
         }
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(errors);
     }
-}
