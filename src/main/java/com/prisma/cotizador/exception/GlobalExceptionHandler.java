@@ -58,6 +58,30 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
+    //-----------------------------------------------------------------
+    // *** HANDLERS FOR USERS ***
+
+    // Handler 404 NOT FOUND for Client
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleUserNotFoundException(UserNotFoundException ex){
+        ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
+
+        return  ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
+
+    // Handler 409 CONFLICT for User
+    @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<ApiResponse<Void>> handleUserAlreadyExistException(UserAlreadyExistException ex){
+        ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
+    }
+
+
     // *** HANDLERS FOR ALL ***
     // Handle 400 BAD REQUEST for incomplete data to create or update Entities
     @ExceptionHandler(ConstraintViolationException.class)
