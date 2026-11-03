@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
     //-----------------------------------------------------------------
     // *** HANDLERS FOR USERS ***
 
-    // Handler 404 NOT FOUND for Client
+    // Handler 404 NOT FOUND for Users
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserNotFoundException(UserNotFoundException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
