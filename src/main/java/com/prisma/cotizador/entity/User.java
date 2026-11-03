@@ -1,8 +1,11 @@
 package com.prisma.cotizador.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
@@ -29,18 +32,23 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
 
+    @Email(message = "Must be a valid email address")
+    @NotBlank(message = "Email is required")
+    private String email;
+
     @NotBlank(message = "Role is required")
     private String role;
 
     public User() {
     }
 
-    public User(Long id, String name, String surname, String username, String password, String role) {
+    public User(Long id, String name, String surname, String username, String password, String email, String role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
+        this.email = email;
         this.role = role;
     }
 
@@ -48,11 +56,11 @@ public class User {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(role, user.role);
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, username, password, role);
+        return Objects.hash(id, name, surname, username, password, email, role);
     }
 }

@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("/listAll")
     public ResponseEntity<ApiResponse<List<UserDTO>>> getAllUsers(){
         List<UserDTO> users = userService.getAllUsers();
-        ApiResponse response = new ApiResponse<>(true, "Users fetched successful", users);
+        ApiResponse<List<UserDTO>> response = new ApiResponse<>(true, "Users fetched successful", users);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

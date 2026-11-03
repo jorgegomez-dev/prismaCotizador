@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
                         user.getSurname(),
                         user.getUsername(),
                         user.getPassword(),
+                        user.getEmail(),
                         user.getRole()
                 )).toList();
     }
@@ -67,11 +68,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).
                 orElseThrow(()-> new UserNotFoundException(id));
 
-        user.setId(userDTO.id());
+        // No password or id or email  can be Update here (others security factors required)
         user.setName(userDTO.name());
         user.setSurname(userDTO.surname());
+        //user.setPassword(userDTO.password());
         user.setUsername(userDTO.username());
-        user.setPassword(userDTO.password());
+        //user.setEmail(userDTO.email());
         user.setRole(userDTO.role());
 
         User userUpdated = userRepository.save(user);
