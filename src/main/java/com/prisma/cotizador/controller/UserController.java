@@ -55,7 +55,6 @@ public class UserController {
         userService.deleteUser(id);
         ApiResponse<HttpStatus> response = new ApiResponse<>(true, "User deleted", HttpStatus.OK);
         return ResponseEntity.ok(response);
-
     }
 
 }
