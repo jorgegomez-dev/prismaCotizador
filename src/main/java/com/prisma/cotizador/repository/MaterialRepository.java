@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MaterialRepository extends JpaRepository<Material, Long>{
 
-    boolean existsByNameAndTypeAndSupplierAndThicknessMM(String name, String type, String supplier, String thicknessMM);
+    boolean existsByNameAndTypeAndSupplierAndThicknessMM(String name, String type, String color, String supplier, String thicknessMM);
 }

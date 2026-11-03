@@ -31,6 +31,7 @@ public class MaterialServiceImpl implements MaterialService {
                         material.getId(),
                         material.getName(),
                         material.getType(),
+                        material.getColor(),
                         material.getSupplier(),
                         material.getWidthMM(),
                         material.getHeightMM(),
@@ -66,6 +67,7 @@ public class MaterialServiceImpl implements MaterialService {
                 materialRepository.existsByNameAndTypeAndSupplierAndThicknessMM(
                         materialDTO.name(),
                         materialDTO.type(),
+                        materialDTO.color(),
                         materialDTO.supplier(),
                         materialDTO.thicknessMM()
                 );
@@ -86,6 +88,7 @@ public class MaterialServiceImpl implements MaterialService {
 
         material.setName(materialDTO.name());
         material.setType(materialDTO.type());
+        material.setColor(materialDTO.color());
         material.setSupplier(materialDTO.supplier());
         material.setWidthMM(materialDTO.widthMM());
         material.setHeightMM(materialDTO.heightMM());

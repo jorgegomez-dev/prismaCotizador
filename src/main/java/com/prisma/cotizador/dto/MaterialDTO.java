@@ -6,6 +6,7 @@ public record MaterialDTO(
         Long id,
         String name,
         String type,
+        String color,
         String supplier,
         Integer widthMM,
         Integer heightMM,
